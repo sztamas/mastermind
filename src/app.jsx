@@ -12,7 +12,10 @@ const App = React.createClass({
     const gameState = game.get('state')
 
     return (<div>
-      <h1 id="title">Mastermind</h1>
+      <div id="title">
+        <h1>Mastermind</h1>
+        <div><a href="rules.html" target="blank">Game Rules</a></div>
+      </div>
       <Board game={game} dispatch={dispatch} />
       {isGameOver(gameState) ? 
           <GameOverDialog
