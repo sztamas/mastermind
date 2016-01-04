@@ -14,7 +14,10 @@ const App = React.createClass({
     return (<div>
       <div id="title">
         <h1>Mastermind</h1>
-        <div><a href="rules.html" target="blank">Game Rules</a></div>
+        <div>
+          <a href="https://github.com/sztamas/mastermind" target="blank">Source Code</a>
+          <a href="rules.html" target="blank">Game Rules</a>
+        </div>
       </div>
       <Board game={game} dispatch={dispatch} />
       {isGameOver(gameState) ? 
