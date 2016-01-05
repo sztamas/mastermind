@@ -7,7 +7,6 @@ import {Provider} from 'react-redux'
 import {fromJS} from 'immutable'
 
 import reducer from './reducer'
-import App from './app'
 import {newGame} from './actions'
 import AppRoutes from './app-routes'
 
