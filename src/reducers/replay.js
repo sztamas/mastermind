@@ -28,6 +28,9 @@ export default function(state = initialState, action) {
   case REPLAY_NEXT:
   case REPLAY_MOVE_TO_END:
     const gameReplayed = state.get('gameReplayed')
+    if (!gameReplayed) {
+      return state
+    }
     const replayPosition = state.get('replayPosition')
     const game = state.get('game')
 
