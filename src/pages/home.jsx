@@ -1,6 +1,5 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Navigation} from 'react-router'
 
 import {newGame} from '../actions'
 
@@ -39,18 +38,20 @@ const HomePage = React.createClass({
     this.context.history.pushState(null, '/play')
   },
 
+  goToReplay: function() {
+    this.context.history.pushState(null, '/replay')
+  },
+
   render: function() {
 
     const style= {
       padding: 20,
     }
 
-    return (<div id="home" style={style}>
+    return (<div className="mainPanel" style={style}>
       <MainButton text="Play a Game" goTo={this.goToPlayAGame} />
+      <MainButton text="Replay Games" goTo={this.goToReplay} />
       <MainButton text="Game Rules" goTo={this.goToGameRules} />
-      {/*
-      <MainButton text="Replay Games" />
-      */}
     </div>)
   }
 })

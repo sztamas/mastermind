@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom'
 import {Router} from 'react-router'
 import createHistory from 'history/lib/createHashHistory'
 import {createStore} from 'redux'
+import {combineReducers} from 'redux-immutablejs'
 import {Provider} from 'react-redux'
 import {fromJS} from 'immutable'
 
-import reducer from './reducer'
+import * as reducers from './reducers'
 import {newGame} from './actions'
 import AppRoutes from './app-routes'
+
+const reducer = combineReducers(reducers)
 
 const store = createStore(reducer)
 

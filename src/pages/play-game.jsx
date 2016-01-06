@@ -13,7 +13,7 @@ const PlayGamePage = React.createClass({
 
     return (<div>
       <Board game={game} dispatch={dispatch} />
-      {isGameOver(gameState) ? 
+      {isGameOver(gameState) ?
           <GameOverDialog
               gameState={gameState}
               newGame={() => dispatch(newGame())}/>

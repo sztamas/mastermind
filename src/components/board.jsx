@@ -54,10 +54,10 @@ const ScorePeg = React.createClass({
       let style = null
       if (score === 'correct') {
         type = 'small peg'
-        style = {backgroundColor: colorScheme['correct']} 
+        style = {backgroundColor: colorScheme['correct']}
       } else if (score === 'correctColor') {
         type = 'small peg'
-        style = {backgroundColor: colorScheme['correctColor']} 
+        style = {backgroundColor: colorScheme['correctColor']}
       } else {
         type = 'small hole'
       }
@@ -104,11 +104,11 @@ const Row = React.createClass({
     return row.get('pegs').every(peg => peg !== null)
   },
 
-  scoresOrEvaluteButton: function(row, isEditable) {
-    if (isEditable) {
+  scoresOrEvaluteButton: function(row, isEditable, isCurrentRow) {
+    if (isCurrentRow) {
       return (<div className='score'>
         <button className="checkButton"
-          disabled={!this.allPegsSet(row)}
+          disabled={!(isEditable && this.allPegsSet(row))}
           onClick={this.props.score}>Check</button>
       </div>)
     }
@@ -116,14 +116,14 @@ const Row = React.createClass({
   },
 
   render: function() {
-    const {row, isEditable, showColorChooser}  = this.props
+    const {row, isEditable, isCurrentRow, showColorChooser}  = this.props
 
     return (<div className="row">
       <div className="holes">
         {row.get('pegs').map((color, idx) =>
             <Peg key={idx} index={idx} isEditable={isEditable} color={color} showColorChooser={showColorChooser} />)}
       </div>
-      {this.scoresOrEvaluteButton(row, isEditable)}
+      {this.scoresOrEvaluteButton(row, isEditable, isCurrentRow)}
     </div>)
   }
 })
@@ -142,7 +142,7 @@ const ColorChooser = React.createClass({
     if (this.state.isShowing && targetEl === this.state.showingForEl) {
       this.close()
       return
-    } 
+    }
     let myTop, myLeft
     const targetRect = targetEl.getBoundingClientRect()
     myTop = window.scrollY + targetRect.top + targetRect.height / 2
@@ -205,20 +205,27 @@ const Board = React.createClass({
 
   render: function() {
     const {game, dispatch} = this.props
+    const boardEditable = this.props.hasOwnProperty('editable') ? this.props.editable : true
     const rows = game.get('rows')
     const gameState = game.get('state')
+    if (!rows) {
+      return <div id="board"></div>
+    }
 
     const currentRowIdx = rows.findIndex(row => !row.get('score'))
 
-    return (<div id="board">
-      {rows.map((row, idx) =>
-        <Row key={idx} 
-          isEditable={!isGameOver(gameState) && currentRowIdx === idx}
-          row={row}
-          showColorChooser={this.showColorChooser}
-          score={() => dispatch(scoreGuess(idx))} />)} 
+    const noop = () => {}
 
-      <ColorChooser ref='colorChooser' 
+    return (<div className="mainPanel">
+      {rows.map((row, idx) =>
+        <Row key={idx}
+          isEditable={boardEditable && !isGameOver(gameState) && currentRowIdx === idx}
+          isCurrentRow={currentRowIdx === idx}
+          row={row}
+          showColorChooser={boardEditable ? this.showColorChooser : noop}
+          score={() => boardEditable ? dispatch(scoreGuess(idx)) : noop} />)}
+
+      <ColorChooser ref='colorChooser'
         changeColor={(newColor) => dispatch(changeColor(currentRowIdx, this.pegIdx, newColor))} />
 
     </div>)

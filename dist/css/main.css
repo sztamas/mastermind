@@ -30,14 +30,10 @@ header > div > a {
   margin-left: 10px;
 }
 
-#home {
+.mainPanel {
   width: 310px;
   margin: 0 auto;
-}
-
-#board {
-  width: 310px;
-  margin: 0 auto;
+  padding: 20px 0px;
 }
 
 .row {
@@ -147,4 +143,8 @@ footer > a > img {
 
 footer > a {
   float: right;
+}
+
+table, th, td {
+  padding: 5px 15px;
 }
