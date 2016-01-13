@@ -104,8 +104,8 @@ const Row = React.createClass({
     return row.get('pegs').every(peg => peg !== null)
   },
 
-  scoresOrEvaluteButton: function(row, isEditable, isCurrentRow) {
-    if (isCurrentRow) {
+  scoresOrEvaluteButton: function(row, isGameOver, isEditable, isCurrentRow) {
+    if (!isGameOver && isCurrentRow) {
       return (<div className='score'>
         <button className="checkButton"
           disabled={!(isEditable && this.allPegsSet(row))}
@@ -116,14 +116,14 @@ const Row = React.createClass({
   },
 
   render: function() {
-    const {row, isEditable, isCurrentRow, showColorChooser}  = this.props
+    const {row, isGameOver, isEditable, isCurrentRow, showColorChooser}  = this.props
 
     return (<div className="row">
       <div className="holes">
         {row.get('pegs').map((color, idx) =>
             <Peg key={idx} index={idx} isEditable={isEditable} color={color} showColorChooser={showColorChooser} />)}
       </div>
-      {this.scoresOrEvaluteButton(row, isEditable, isCurrentRow)}
+      {this.scoresOrEvaluteButton(row, isGameOver, isEditable, isCurrentRow)}
     </div>)
   }
 })
@@ -219,6 +219,7 @@ const Board = React.createClass({
     return (<div className="mainPanel">
       {rows.map((row, idx) =>
         <Row key={idx}
+          isGameOver={isGameOver(gameState)}
           isEditable={boardEditable && !isGameOver(gameState) && currentRowIdx === idx}
           isCurrentRow={currentRowIdx === idx}
           row={row}
