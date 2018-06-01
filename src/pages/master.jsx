@@ -19,7 +19,7 @@ const Master = React.createClass({
       </div>
 
       <footer>
-        <span><strong>&copy; Copyright</strong> Tamas Szabo, 2016</span>
+        <span><strong>&copy; Copyright</strong> Tamas Szabo, 2018</span>
         <a href="https://github.com/sztamas/mastermind" target="blank">
           <img src='img/Octocat.jpg'></img>
           Source Code
