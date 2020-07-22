@@ -14,7 +14,7 @@ const GameOverDialog = React.createClass({
       },
       button: {
         fontSize: 18,
-        padding: 12
+        padding: 8
       }
     }
 

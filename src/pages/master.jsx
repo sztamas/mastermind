@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 
 const Master = React.createClass({
   render: function() {
+    const year = new Date().getFullYear();
 
     return (<div>
       <header>
@@ -19,7 +20,7 @@ const Master = React.createClass({
       </div>
 
       <footer>
-        <span><strong>&copy; Copyright</strong> Tamas Szabo, 2018</span>
+        <span><strong>&copy;</strong> { year }, Tamas Szabo</span>
         <a href="https://github.com/sztamas/mastermind" target="blank">
           <img src='img/Octocat.jpg'></img>
           Source Code

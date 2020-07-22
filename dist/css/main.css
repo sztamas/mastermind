@@ -1,5 +1,9 @@
+:root {
+  --link-color: #6193a4;
+}
+
 a {
-  color: lightblue
+  color: var(--link-color);
 }
 
 header {
@@ -13,7 +17,6 @@ header > h1 {
   text-align: center;
   font-size: 40px;
   font-family: 'Sigmar One', courier;
-  color: lightblue;
 }
 
 header > h1 > a {
@@ -42,7 +45,9 @@ header > div > a {
 
 .checkButton {
   font-size: 90%;
+  width: 70px;
   height: 50px;
+  padding: 0;
 }
 
 .hole {
@@ -50,8 +55,8 @@ header > div > a {
   display: inline-block;
   border: 4px solid darkgray;
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
 }
 
 .peg {
@@ -59,8 +64,8 @@ header > div > a {
   display: inline-block;
   border: 4px solid darkgray;
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
 }
 
 .holes {
@@ -148,3 +153,8 @@ footer > a {
 table, th, td {
   padding: 5px 15px;
 }
+
+button {
+  -moz-appearance: none;
+}
+

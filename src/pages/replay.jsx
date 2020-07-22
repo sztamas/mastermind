@@ -14,7 +14,7 @@ const toolbarStyles = {
         backgroundColor: '#f2f2f2',
         width: 310,
         position: 'fixed',
-        bottom: 50,
+        bottom: 120,
         textAlign: 'center',
         padding: 5
       },
@@ -28,6 +28,7 @@ const toolbarStyles = {
         height: 36
       }
   }
+
 const ReplayAutoPlayToolBar = React.createClass({
   render: function() {
     const {stop, skip, speed, setSpeed, nextEventIn} = this.props
@@ -66,11 +67,11 @@ const ReplayAutoPlayToolBar = React.createClass({
       <button style={styles.button} onClick={stop}>
         <img style={styles.img} src="img/ic_stop_black_48dp.png" alt="Stop" title="Stop" />
       </button>
-        <span style={{paddingLeft: 12, fontFamily: 'Courier'}}>{nextEventInFormatted}</span>
+        <span style={{paddingLeft: 4, fontFamily: 'Courier'}}>{nextEventInFormatted}</span>
       <button style={styles.button} onClick={skip}>
         <img style={styles.img} src="img/ic_skip_next_black_48dp.png" alt="Skip" title="Skip" />
       </button>
-      <span style={{paddingLeft: 12}}></span>
+      <span style={{paddingLeft: 4}}></span>
       <button style={btnStyle(1)} onClick={() => setSpeed(1)}>1x</button>
       <button style={btnStyle(2)} onClick={() => setSpeed(2)}>2x</button>
       <button style={btnStyle(4)} onClick={() => setSpeed(4)}>4x</button>
